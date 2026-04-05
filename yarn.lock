@@ -14676,6 +14676,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@onpilot/node@portal:/Users/gunit/Workspace/onpilot-projects/packages/onpilot-node::locator=twenty-server%40workspace%3Apackages%2Ftwenty-server":
+  version: 0.0.0-use.local
+  resolution: "@onpilot/node@portal:/Users/gunit/Workspace/onpilot-projects/packages/onpilot-node::locator=twenty-server%40workspace%3Apackages%2Ftwenty-server"
+  dependencies:
+    jsonwebtoken: "npm:^9.0.0"
+  languageName: node
+  linkType: soft
+
+"@onpilot/react@portal:/Users/gunit/Workspace/onpilot-projects/packages/onpilot-react::locator=twenty-front%40workspace%3Apackages%2Ftwenty-front":
+  version: 0.0.0-use.local
+  resolution: "@onpilot/react@portal:/Users/gunit/Workspace/onpilot-projects/packages/onpilot-react::locator=twenty-front%40workspace%3Apackages%2Ftwenty-front"
+  peerDependencies:
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  languageName: node
+  linkType: soft
+
 "@open-draft/deferred-promise@npm:^2.1.0, @open-draft/deferred-promise@npm:^2.2.0":
   version: 2.2.0
   resolution: "@open-draft/deferred-promise@npm:2.2.0"
@@ -59663,6 +59680,7 @@ __metadata:
     "@nivo/line": "npm:^0.99.0"
     "@nivo/pie": "npm:^0.99.0"
     "@nivo/radial-bar": "npm:^0.99.0"
+    "@onpilot/react": "portal:/Users/gunit/Workspace/onpilot-projects/packages/onpilot-react"
     "@playwright/test": "npm:^1.56.1"
     "@react-email/components": "npm:^0.5.3"
     "@react-pdf/renderer": "npm:^4.1.6"
@@ -59855,6 +59873,7 @@ __metadata:
     "@nestjs/typeorm": "npm:11.0.0"
     "@node-saml/node-saml": "npm:5.1.0"
     "@node-saml/passport-saml": "npm:^5.1.0"
+    "@onpilot/node": "portal:/Users/gunit/Workspace/onpilot-projects/packages/onpilot-node"
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/auto-instrumentations-node": "npm:^0.60.0"
     "@opentelemetry/exporter-metrics-otlp-http": "npm:^0.200.0"

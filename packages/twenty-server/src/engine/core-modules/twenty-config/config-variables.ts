@@ -1621,6 +1621,15 @@ export class ConfigVariables {
   })
   @IsOptional()
   APP_REGISTRY_TOKEN: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.ADVANCED_SETTINGS,
+    isSensitive: true,
+    description: 'OnPilot Copilot signing secret (@onpilot/node)',
+    type: ConfigVariableType.STRING,
+  })
+  @IsOptional()
+  COPILOT_SECRET_KEY: string;
 }
 
 export const validate = (config: Record<string, unknown>): ConfigVariables => {

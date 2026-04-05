@@ -1,4 +1,5 @@
 import { AuthModal } from '@/auth/components/AuthModal';
+import { CopilotSidePanel } from '@/copilot/components/CopilotSidePanel';
 import { AppErrorBoundary } from '@/error-handler/components/AppErrorBoundary';
 import { AppFullScreenErrorFallback } from '@/error-handler/components/AppFullScreenErrorFallback';
 import { AppPageErrorFallback } from '@/error-handler/components/AppPageErrorFallback';
@@ -125,6 +126,7 @@ export const DefaultLayout = () => {
                   </StyledMainContainer>
                 )}
               </PageDragDropProvider>
+              {!showAuthModal && <CopilotSidePanel />}
             </StyledPageContainer>
             {isMobile && !showAuthModal && <MobileNavigationBar />}
           </AppErrorBoundary>
