@@ -22,6 +22,8 @@ import { useSetAtomState } from '@/ui/utilities/state/jotai/hooks/useSetAtomStat
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 
+const COPILOT_CHAT_URL = import.meta.env.VITE_COPILOT_CHAT_URL || 'https://chat.onpilot.ai';
+
 const COPILOT_ID = '1a7d57f3-662e-486d-89af-53727396b4d6';
 
 const HEADER_HEIGHT = 56;
@@ -267,7 +269,7 @@ export const CopilotSidePanel = () => {
         <CopilotPanel
           copilotId={COPILOT_ID}
           tokenFetcher={tokenFetcher}
-          chatUrl="https://chat-dev.onpilot.ai"
+          chatUrl={COPILOT_CHAT_URL}
           theme="light"
           context={context}
           userId={currentWorkspaceMember?.id}
