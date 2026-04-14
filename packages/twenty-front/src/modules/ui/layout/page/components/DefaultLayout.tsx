@@ -60,6 +60,14 @@ const StyledMainContainer = styled.div`
   display: flex;
   flex: 0 1 100%;
   overflow: hidden;
+  position: relative;
+`;
+
+const StyledContentArea = styled.div`
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 `;
 
 export const DefaultLayout = () => {
@@ -120,13 +128,15 @@ export const DefaultLayout = () => {
                   </>
                 ) : (
                   <StyledMainContainer>
-                    <AppErrorBoundary FallbackComponent={AppPageErrorFallback}>
-                      <Outlet />
-                    </AppErrorBoundary>
+                    <StyledContentArea>
+                      <AppErrorBoundary FallbackComponent={AppPageErrorFallback}>
+                        <Outlet />
+                      </AppErrorBoundary>
+                    </StyledContentArea>
+                    {!showAuthModal && <CopilotSidePanel />}
                   </StyledMainContainer>
                 )}
               </PageDragDropProvider>
-              {!showAuthModal && <CopilotSidePanel />}
             </StyledPageContainer>
             {isMobile && !showAuthModal && <MobileNavigationBar />}
           </AppErrorBoundary>

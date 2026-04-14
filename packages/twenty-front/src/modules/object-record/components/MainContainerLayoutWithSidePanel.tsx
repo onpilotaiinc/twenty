@@ -1,7 +1,10 @@
 import { CommandMenuForMobile } from '@/command-menu/components/CommandMenuForMobile';
+import { copilotPanelWidthState } from '@/copilot/states/copilotPanelWidthState';
+import { isCopilotOpenState } from '@/copilot/states/isCopilotOpenState';
 import { SidePanelForDesktop } from '@/side-panel/components/SidePanelForDesktop';
 import { useCommandMenuHotKeys } from '@/command-menu/hooks/useCommandMenuHotKeys';
 import { PageBody } from '@/ui/layout/page/components/PageBody';
+import { useAtomStateValue } from '@/ui/utilities/state/jotai/hooks/useAtomStateValue';
 import { styled } from '@linaria/react';
 import { type ReactNode } from 'react';
 import { useIsMobile } from 'twenty-ui/utilities';
@@ -11,12 +14,14 @@ type MainContainerLayoutWithSidePanelProps = {
   children: ReactNode;
 };
 
-const StyledMainContainerLayoutForDesktop = styled.div`
+const StyledMainContainerLayoutForDesktop = styled.div<{
+  copilotPaddingRight: number;
+}>`
   display: flex;
   flex: 1;
   min-height: 0;
   padding-bottom: ${themeCssVariables.spacing[3]};
-  padding-right: ${themeCssVariables.spacing[3]};
+  padding-right: ${({ copilotPaddingRight }) => copilotPaddingRight}px;
 `;
 
 const StyledPageBodyForDesktopContainer = styled.div`
@@ -59,6 +64,10 @@ export const MainContainerLayoutWithSidePanel = ({
 }: MainContainerLayoutWithSidePanelProps) => {
   const isMobile = useIsMobile();
 
+  const isCopilotOpen = useAtomStateValue(isCopilotOpenState);
+  const copilotWidth = useAtomStateValue(copilotPanelWidthState);
+  const copilotPaddingRight = isCopilotOpen ? copilotWidth + 12 : 12;
+
   useCommandMenuHotKeys();
 
   if (isMobile) {
@@ -73,7 +82,7 @@ export const MainContainerLayoutWithSidePanel = ({
   }
 
   return (
-    <StyledMainContainerLayoutForDesktop>
+    <StyledMainContainerLayoutForDesktop copilotPaddingRight={copilotPaddingRight}>
       <StyledPageBodyForDesktopContainer>
         <PageBody>{children}</PageBody>
       </StyledPageBodyForDesktopContainer>

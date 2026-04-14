@@ -2,11 +2,10 @@ import { useLingui } from '@lingui/react/macro';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
-import { IconHelpCircle, IconSettings, IconSparkles } from 'twenty-ui/display';
+import { IconHelpCircle, IconSettings } from 'twenty-ui/display';
 import { AnimatedExpandableContainer } from 'twenty-ui/layout';
 
 import { currentWorkspaceMemberState } from '@/auth/states/currentWorkspaceMemberState';
-import { useToggleCopilot } from '@/copilot/hooks/useToggleCopilot';
 import { useOpenSettingsMenu } from '@/navigation/hooks/useOpenSettings';
 import { getDocumentationUrl } from '@/support/utils/getDocumentationUrl';
 import { isNavigationDrawerExpandedState } from '@/ui/navigation/states/isNavigationDrawerExpanded';
@@ -39,8 +38,6 @@ export const NavigationDrawerOtherSection = () => {
   );
 
   const { openSettingsMenu } = useOpenSettingsMenu();
-  const { toggleCopilot } = useToggleCopilot();
-
   const { toggleNavigationSection } = useNavigationSection('Other');
   const isNavigationSectionOpen = useAtomFamilyStateValue(
     isNavigationSectionOpenFamilyState,
@@ -82,11 +79,6 @@ export const NavigationDrawerOtherSection = () => {
             locale: currentWorkspaceMember?.locale,
           })}
           Icon={IconHelpCircle}
-        />
-        <NavigationDrawerItem
-          label="Copilot"
-          Icon={IconSparkles}
-          onClick={toggleCopilot}
         />
       </AnimatedExpandableContainer>
     </NavigationDrawerSection>

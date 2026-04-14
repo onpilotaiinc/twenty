@@ -8,6 +8,7 @@ import { type UserEntity } from 'src/engine/core-modules/user/user.entity';
 import { type WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { AuthUser } from 'src/engine/decorators/auth/auth-user.decorator';
 import { AuthWorkspace } from 'src/engine/decorators/auth/auth-workspace.decorator';
+import { AuthWorkspaceMemberId } from 'src/engine/decorators/auth/auth-workspace-member-id.decorator';
 import { JwtAuthGuard } from 'src/engine/guards/jwt-auth.guard';
 import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
 
@@ -21,15 +22,17 @@ export class CopilotTokenController {
   generateToken(
     @AuthUser() user: UserEntity,
     @AuthWorkspace() workspace: WorkspaceEntity,
+    @AuthWorkspaceMemberId() workspaceMemberId: string,
   ): { token: string } {
     const token = createCopilotToken({
       secret: this.twentyConfigService.get('COPILOT_SECRET_KEY'),
-      userId: user.id,
+      userId: workspaceMemberId,
       orgId: workspace.id,
       role: user.canImpersonate || user.canAccessFullAdminPanel
         ? 'admin'
         : 'user',
       name: [user.firstName, user.lastName].filter(Boolean).join(' '),
+      email: user.email,
     });
 
     return { token };
